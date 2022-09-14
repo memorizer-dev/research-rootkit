@@ -1,15 +1,15 @@
 TARGET = rec
 obj-m := ${TARGET}ko.o
 ${TARGET}ko-objs := ${TARGET}.o zeroevil/zeroevil.o
-
+KDIR ?= "/lib/modules/$(shell uname --release)/build"
 
 default:
 	${MAKE} modules \
-		--directory "/lib/modules/$(shell uname --release)/build" \
+		--directory $(KDIR) \
 		M="$(shell pwd)"
 
 
 clean:
 	${MAKE} clean \
-		--directory "/lib/modules/$(shell uname --release)/build" \
+		--directory $(KDIR) \
 		M="$(shell pwd)"
